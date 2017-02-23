@@ -8,6 +8,9 @@ public class ChoiceRole : MonoBehaviour {
     // 所有职业预设供外部编辑
     public GameObject[] allJobs;
 
+    // 名字输入框
+    public UIInput nameInput;
+
     // 当前选中的职业索引
     private int index = 0;
 
@@ -69,4 +72,15 @@ public class ChoiceRole : MonoBehaviour {
         showRole();
     }
 
+
+    public void onClickOk()
+    {
+        string name = nameInput.value;
+
+        if ( name == null || name == "" )
+            return;
+
+        PlayerPrefs.SetString("name", name);
+        PlayerPrefs.SetInt("job", index);
+    }
 }
