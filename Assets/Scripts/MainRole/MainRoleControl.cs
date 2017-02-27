@@ -4,14 +4,23 @@ using UnityEngine;
 
 public class MainRoleControl : MonoBehaviour {
 
-    private Vector3 helpVec;
-
     public GameObject effectPerfab;
 
-	// Use this for initialization
-	void Start () {
+    public bool bMoveing;
+
+    public Vector3 targetPos;
+
+    private float waitTime = 0.0f;
+
+    private Vector3 helpVec;
+
+    // Use this for initialization
+    void Start () {
 
         helpVec = new Vector3();
+        targetPos = new Vector3();
+        targetPos = transform.position;
+        bMoveing = false;
     }
 	
 	// Update is called once per frame
@@ -19,9 +28,23 @@ public class MainRoleControl : MonoBehaviour {
     {
         if (Input.GetMouseButtonDown(0))
         {
+            bMoveing = true;
+        }
+
+        if (Input.GetMouseButtonUp(0))
+        {
+            bMoveing = false;
+        }
+
+        waitTime -= Time.deltaTime;
+
+        if (waitTime <= 0.0f && bMoveing)
+        {
+            waitTime = 0.1f;
             checkRay();
         }
-	}
+
+    }
 
     void checkRay()
     {
@@ -35,6 +58,10 @@ public class MainRoleControl : MonoBehaviour {
         {
             helpVec.x = hitInfo.point.x; helpVec.y = hitInfo.point.y + 0.1f; helpVec.z = hitInfo.point.z;
             GameObject effect = Instantiate(effectPerfab, helpVec, Quaternion.identity);
+
+            targetPos.x = helpVec.x; targetPos.y = transform.position.y; targetPos.z = helpVec.z;
+
+            this.transform.LookAt(targetPos);
         }
 
     }
