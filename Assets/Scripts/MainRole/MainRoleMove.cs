@@ -7,7 +7,7 @@ public class MainRoleMove : MonoBehaviour {
     private MainRoleControl roleControl;
     private CharacterController control;
 
-    private float speed = 1.0f;
+    private float speed = 4.0f;
 
     public int state = StateUtils.IDLE;
 

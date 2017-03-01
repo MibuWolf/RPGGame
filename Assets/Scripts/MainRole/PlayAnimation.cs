@@ -24,7 +24,7 @@ public class PlayAnimation : MonoBehaviour {
 
         if (move.state == StateUtils.WALK)
         {
-            animation.CrossFade(PlayerPrefs.GetString("Job") + "-" + "Walk");
+            animation.CrossFade(PlayerPrefs.GetString("Job") + "-" + "Run");
         }
     }
 }
