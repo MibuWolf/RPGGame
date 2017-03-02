@@ -26,7 +26,7 @@ public class MainRoleControl : MonoBehaviour {
 	// Update is called once per frame
 	void Update ()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0) && UICamera.hoveredObject == null )
         {
             bMoveing = true;
         }
