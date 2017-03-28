@@ -17,7 +17,7 @@ public class ItemModel : MonoBehaviour {
 
         initData(config.text);
 
-        ItemData data = getData(11001);
+        ItemData data = getData(10001);
 
         if (data != null)
             print(data.name);
@@ -36,8 +36,9 @@ public class ItemModel : MonoBehaviour {
             ItemData item = new ItemData();
             item.id = int.Parse(info[0]);
             item.name = info[1];
+            item.icon = info[2];
 
-            switch (int.Parse(info[2]))
+            switch (int.Parse(info[3]))
             {
                 case 0:
                     item.type = ItemType.Drag;
@@ -47,8 +48,8 @@ public class ItemModel : MonoBehaviour {
                     break;
             }
             
-            item.value = int.Parse(info[3]);
-            item.price = int.Parse(info[4]);
+            item.value = int.Parse(info[4]);
+            item.price = int.Parse(info[5]);
 
             dataDic.Add(item.id, item );
         }
@@ -81,6 +82,8 @@ public class ItemData
     public ItemType type;
     // 名称
     public string name;
+    // Icon
+    public string icon;
     // 属性值
     public int value;
     // 价格
