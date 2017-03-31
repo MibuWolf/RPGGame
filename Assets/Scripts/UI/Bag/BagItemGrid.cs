@@ -8,7 +8,7 @@ public class BagItemGrid : MonoBehaviour {
     public int id = 0;
 
     // 道具堆叠数
-    private int count = 0;
+    public int count = 0;
 
     // 数量lable
     private UILabel lb_count;
@@ -16,10 +16,18 @@ public class BagItemGrid : MonoBehaviour {
     // 道具数据
     private ItemData item;
 
+    // icon预设
+    public GameObject iconPrefab;
+
+    private GameObject icon;
 	// Use this for initialization
 	void Start () {
 
         lb_count = this.GetComponentInChildren<UILabel>();
+
+        icon = NGUITools.AddChild(this.gameObject, iconPrefab);
+
+        icon.SetActive(false);
 
     }
 
@@ -30,17 +38,18 @@ public class BagItemGrid : MonoBehaviour {
         count = _count;
         item = ItemModel.instance.getData(id);
 
-        if (item == null)
+        if (item == null || icon == null)
         {
             print("Error : Cannot Find Item which id is " + id);
             return;
         }
 
-        BagItemIcon icon = this.GetComponentInChildren<BagItemIcon>();
+        icon.SetActive(true);
+        BagItemIcon itemIcon = icon.GetComponent<BagItemIcon>();
 
         if (icon)
         {
-            icon.setIconID(id);
+            itemIcon.setIconID(id);
             lb_count.enabled = true;
             lb_count.depth = 5;
             lb_count.text = count.ToString();
@@ -66,10 +75,16 @@ public class BagItemGrid : MonoBehaviour {
         lb_count.enabled = false;
         lb_count.text = count.ToString();
 
-        BagItemIcon icon = this.GetComponent<BagItemIcon>();
+        if (icon == null)
+            return;
 
-        if (icon)
-            icon.clear();
+        BagItemIcon iconItem = icon.GetComponent<BagItemIcon>();
+
+        if (iconItem)
+        {
+            iconItem.clear();
+            iconItem.gameObject.SetActive(false);
+        }
 
     }
 }

@@ -12,8 +12,6 @@ public class Bag : MonoBehaviour {
 
     private TweenPosition tween;
 
-    public GameObject itemIcon;
-
     private void Awake()
     {
         if(instance == null)
@@ -31,6 +29,7 @@ public class Bag : MonoBehaviour {
             addItem(Random.Range(10001, 10005));
         }
     }
+
 
 
     public void addItem(int id)
@@ -69,9 +68,11 @@ public class Bag : MonoBehaviour {
             }
             else
             {
-                GameObject iconObj = NGUITools.AddChild(itemGrid.gameObject, itemIcon);
-                iconObj.transform.localPosition = Vector3.zero;
-                itemGrid.setID( id );
+                //  GameObject iconObj = NGUITools.AddChild(itemGrid.gameObject, itemIcon);
+                //  iconObj.transform.localPosition = Vector3.zero;
+                //  itemGrid.setID( id );
+
+                itemGrid.setID(id);
             }
         }
     }

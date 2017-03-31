@@ -5,7 +5,6 @@ using UnityEngine;
 public class BagItemIcon : UIDragDropItem
 {
     private UISprite sprite;
-    
     void Start()
     {
         base.Start();
@@ -18,7 +17,52 @@ public class BagItemIcon : UIDragDropItem
         base.OnDragDropRelease(surface);
 
         if (surface)
-            print(surface.tag);
+        {
+            // 拖到了空格子
+            if (surface.tag == TagsUtils.ITEMGRID)
+            {
+                BagItemGrid myGrid = this.transform.parent.GetComponent<BagItemGrid>();
+                BagItemGrid grid = surface.GetComponent<BagItemGrid>();
+                grid.setID(myGrid.id, myGrid.count);
+                myGrid.clear();
+        
+            }
+            // 拖到里一个已有物品的非空格子上
+            else if (surface.tag == TagsUtils.ITEM)
+            {
+                if (surface == this.gameObject)
+                    initPosition();
+                else
+                {
+                    // 交换吧骚年
+                    BagItemGrid targetGrid = surface.transform.parent.GetComponent<BagItemGrid>();
+                    BagItemGrid curGrid = transform.parent.GetComponent<BagItemGrid>();
+
+                    int curId = curGrid.id;
+                    int curCount = curGrid.count;
+
+                    int tatgetId = targetGrid.id;
+                    int targetCount = targetGrid.count;
+
+                    curGrid.setID(tatgetId, targetCount);
+                    targetGrid.setID(curId, curCount);
+                }
+            }
+            else
+            {
+                initPosition();
+            }
+        }
+        else
+        {
+            initPosition();
+        }
+    }
+
+
+    private void initPosition()
+    {
+        this.transform.localPosition = Vector3.zero;
     }
 
     public void setIconID(int id)
@@ -32,6 +76,8 @@ public class BagItemIcon : UIDragDropItem
         {
             sprite.spriteName = item.icon;
         }
+
+        sprite.transform.localPosition = Vector3.zero;
     }
 
     public void clear()
