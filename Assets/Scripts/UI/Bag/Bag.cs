@@ -12,22 +12,24 @@ public class Bag : MonoBehaviour {
 
     private TweenPosition tween;
 
+    private bool bShow = false;
+
     private void Awake()
     {
         if(instance == null)
             instance = this;
 
         tween = this.GetComponent<TweenPosition>();
+
+        tween.AddOnFinished(onFinshCartoon);
+        this.gameObject.SetActive(false);
     }
 
 
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.X))
-        {
-            addItem(Random.Range(10001, 10005));
-        }
+
     }
 
 
@@ -78,14 +80,36 @@ public class Bag : MonoBehaviour {
     }
 
 
-    public void openBag()
+    public void changeState()
     {
-        tween.PlayForward();
+        if (bShow)
+        {
+            closeBag();
+        }
+        else
+        {
+            openBag();
+        }
     }
 
 
-    public void closeBag()
+    void openBag()
+    {
+        tween.PlayForward();
+        bShow = true;
+        this.gameObject.SetActive(true);
+    }
+
+
+    void closeBag()
     {
         tween.PlayReverse();
+        bShow = false;
+    }
+
+    private void onFinshCartoon()
+    {
+        if (!bShow)
+            this.gameObject.SetActive(false);
     }
 }
