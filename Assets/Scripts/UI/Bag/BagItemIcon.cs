@@ -5,6 +5,9 @@ using UnityEngine;
 public class BagItemIcon : UIDragDropItem
 {
     private UISprite sprite;
+
+    private int itemID;
+
     void Start()
     {
         base.Start();
@@ -67,6 +70,8 @@ public class BagItemIcon : UIDragDropItem
 
     public void setIconID(int id)
     {
+        itemID = id;
+
         ItemData item = ItemModel.instance.getData(id);
 
         if(sprite == null)
@@ -79,6 +84,19 @@ public class BagItemIcon : UIDragDropItem
 
         sprite.transform.localPosition = Vector3.zero;
     }
+
+
+    public void onMouseOver()
+    {
+        BagTips.instance.showTips(itemID);
+    }
+
+
+    public void onMouseOut()
+    {
+        BagTips.instance.closeTips();
+    }
+
 
     public void clear()
     {
