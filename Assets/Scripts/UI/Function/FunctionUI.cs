@@ -26,7 +26,7 @@ public class FunctionUI : MonoBehaviour {
 
     public void onClickStatus()
     {
-
+        Status.instance.changeState();
     }
 
     void Update()

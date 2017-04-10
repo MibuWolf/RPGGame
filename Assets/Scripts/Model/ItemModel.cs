@@ -16,11 +16,6 @@ public class ItemModel : MonoBehaviour {
             instance = this;
 
         initData(config.text);
-
-        ItemData data = getData(10001);
-
-        if (data != null)
-            print(data.name);
     }
 
 
