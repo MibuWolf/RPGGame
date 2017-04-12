@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ClickNpc : Npc
+public class BarNpc : Npc
 {
 
     public TweenPosition tween;

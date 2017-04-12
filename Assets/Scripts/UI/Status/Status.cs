@@ -31,6 +31,8 @@ public class Status : MonoBehaviour {
     // 增加速度按钮
     private GameObject btnSpd;
 
+    private AttributeModel attribute;
+
     private void Awake()
     {
         if (instance == null)
@@ -58,12 +60,8 @@ public class Status : MonoBehaviour {
         btnSpd = this.transform.Find("btnSpd").gameObject;
 
         GameObject player = GameObject.FindGameObjectWithTag(TagsUtils.PLAYER);
-        AttributeModel attribute = player.GetComponent<AttributeModel>();
+        attribute = player.GetComponent<AttributeModel>();
 
-        print(attribute.attack);
-        print(attribute.defense);
-        print(attribute.speed);
-        print(attribute.point);
         lbAct.text = attribute.attack.ToString();
         lbDef.text = attribute.defense.ToString();
         lbSpd.text = attribute.speed.ToString();
@@ -82,6 +80,85 @@ public class Status : MonoBehaviour {
             btnSpd.SetActive(false);
         }
     }
+
+
+    public void onClickAttack()
+    {
+        if (attribute.point > 0)
+        {
+            attribute.point--;
+            attribute.attack++;
+
+            lbAct.text = attribute.attack.ToString();
+            lvPoint.text = attribute.point.ToString();
+        }
+
+        if (attribute.point > 0)
+        {
+            btnAct.SetActive(true);
+            btnDef.SetActive(true);
+            btnSpd.SetActive(true);
+        }
+        else
+        {
+            btnAct.SetActive(false);
+            btnDef.SetActive(false);
+            btnSpd.SetActive(false);
+        }
+    }
+
+    public void onClickDefense()
+    {
+        if (attribute.point > 0)
+        {
+            attribute.point--;
+            attribute.defense++;
+
+            lbDef.text = attribute.defense.ToString();
+            lvPoint.text = attribute.point.ToString();
+        }
+
+        if (attribute.point > 0)
+        {
+            btnAct.SetActive(true);
+            btnDef.SetActive(true);
+            btnSpd.SetActive(true);
+        }
+        else
+        {
+            btnAct.SetActive(false);
+            btnDef.SetActive(false);
+            btnSpd.SetActive(false);
+        }
+    }
+
+    public void onClickSpeed()
+    {
+        if (attribute.point > 0)
+        {
+            attribute.point--;
+            attribute.speed++;
+
+            lbSpd.text = attribute.speed.ToString();
+            lvPoint.text = attribute.point.ToString();
+        }
+
+        if (attribute.point > 0)
+        {
+            btnAct.SetActive(true);
+            btnDef.SetActive(true);
+            btnSpd.SetActive(true);
+        }
+        else
+        {
+            btnAct.SetActive(false);
+            btnDef.SetActive(false);
+            btnSpd.SetActive(false);
+        }
+    }
+
+
+
 
 
     // Use this for initialization
