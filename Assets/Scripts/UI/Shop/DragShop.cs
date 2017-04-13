@@ -9,6 +9,8 @@ public class DragShop : MonoBehaviour {
     private bool bShow = false;
     private TweenPosition tween;
 
+    private GameObject buyUI;
+
     private void Awake()
     {
         if (instance == null)
@@ -17,6 +19,8 @@ public class DragShop : MonoBehaviour {
 
             tween = gameObject.GetComponent<TweenPosition>();
             this.gameObject.SetActive(false);
+            buyUI = this.gameObject.transform.FindChild("buyCount").gameObject;
+            buyUI.SetActive(false);
         }
     }
 
@@ -45,6 +49,30 @@ public class DragShop : MonoBehaviour {
         transState();
     }
 
+
+    // 购买小瓶血瓶
+    public void onClickBuy1()
+    {
+        buyUI.SetActive(true);
+    }
+
+    // 购买大屏血瓶
+    public void onClickBuy2()
+    {
+
+    }
+
+    // 购买蓝屏
+    public void onClickBuy3()
+    {
+
+    }
+
+    // 显示隐藏购买界面
+    private void changeBuyUI()
+    {
+
+    }
 
 
     private void onFinished()
