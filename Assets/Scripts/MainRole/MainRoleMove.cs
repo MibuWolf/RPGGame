@@ -24,7 +24,6 @@ public class MainRoleMove : MonoBehaviour {
 	void LateUpdate ()
     {
         checkMoving();
-
     }
 
 

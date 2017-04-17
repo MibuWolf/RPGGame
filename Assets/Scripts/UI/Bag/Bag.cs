@@ -14,7 +14,7 @@ public class Bag : MonoBehaviour {
 
     private bool bShow = false;
 
-    private void Awake()
+    void Start()
     {
         if(instance == null)
             instance = this;

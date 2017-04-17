@@ -39,7 +39,22 @@ public class ItemModel : MonoBehaviour {
                     item.type = ItemType.Drag;
                     break;
                 case 1:
-                    item.type = ItemType.Equip;
+                    item.type = ItemType.HeadEquip;
+                    break;
+                case 2:
+                    item.type = ItemType.ArmorEquip;
+                    break;
+                case 3:
+                    item.type = ItemType.RHand;
+                    break;
+                case 4:
+                    item.type = ItemType.LHand;
+                    break;
+                case 5:
+                    item.type = ItemType.Shoe;
+                    break;
+                case 6:
+                    item.type = ItemType.Accessory;
                     break;
             }
             
@@ -65,7 +80,12 @@ public class ItemModel : MonoBehaviour {
 public enum ItemType
 {
     Drag,
-    Equip
+    HeadEquip,
+    ArmorEquip,
+    RHand,
+    LHand,
+    Shoe,
+    Accessory
 }
 
 

@@ -16,7 +16,7 @@ public class FunctionUI : MonoBehaviour {
 
     public void onClickEquip()
     {
-
+        Equip.instance.transformState();
     }
 
     public void onClickSetting()

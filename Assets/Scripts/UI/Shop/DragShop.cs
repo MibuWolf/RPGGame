@@ -11,6 +11,9 @@ public class DragShop : MonoBehaviour {
 
     private GameObject buyUI;
 
+    private int curItemID = 0;
+    private UILabel lbCount;
+
     private void Awake()
     {
         if (instance == null)
@@ -18,9 +21,13 @@ public class DragShop : MonoBehaviour {
             instance = this;
 
             tween = gameObject.GetComponent<TweenPosition>();
-            this.gameObject.SetActive(false);
             buyUI = this.gameObject.transform.FindChild("buyCount").gameObject;
             buyUI.SetActive(false);
+
+            GameObject gbInput = buyUI.transform.FindChild("inputCount").gameObject;
+            lbCount = gbInput.GetComponentInChildren<UILabel>();
+
+            this.gameObject.SetActive(false);
         }
     }
 
@@ -54,24 +61,38 @@ public class DragShop : MonoBehaviour {
     public void onClickBuy1()
     {
         buyUI.SetActive(true);
+
+        curItemID = 10001;
     }
 
     // 购买大屏血瓶
     public void onClickBuy2()
     {
+        buyUI.SetActive(true);
 
+        curItemID = 10004;
     }
 
     // 购买蓝屏
     public void onClickBuy3()
     {
+        buyUI.SetActive(true);
 
+        curItemID = 10002;
     }
 
-    // 显示隐藏购买界面
-    private void changeBuyUI()
-    {
 
+    // 购买道具
+    public void onClickBuy()
+    {
+        int count = int.Parse( lbCount.text );
+
+        for (int i = 0; i < count; ++i)
+        {
+            Bag.instance.addItem(curItemID);
+        }
+
+        buyUI.SetActive(false);
     }
 
 
