@@ -69,40 +69,46 @@ public class Equip : MonoBehaviour {
     {
         ItemData item = ItemModel.instance.getData(id);
 
+        UISprite equipItem = null;
+
         if (item != null)
         {
             switch (item.type)
             {
                 case ItemType.HeadEquip:
                     {
-
-                    }break;
+                        equipItem = headObj.GetComponentInChildren<UISprite>();
+                    }
+                    break;
                 case ItemType.ArmorEquip:
                     {
-
+                        equipItem = armorObj.GetComponentInChildren<UISprite>();
                     }
                     break;
                 case ItemType.RHand:
                     {
-
+                        equipItem = rHandObj.GetComponentInChildren<UISprite>();
                     }
                     break;
                 case ItemType.LHand:
                     {
-
+                        equipItem = lHandObj.GetComponentInChildren<UISprite>();
                     }
                     break;
                 case ItemType.Shoe:
                     {
-
+                        equipItem = shoeObj.GetComponentInChildren<UISprite>();
                     }
                     break;
                 case ItemType.Accessory:
                     {
-
+                        equipItem = accessoryObj.GetComponentInChildren<UISprite>();
                     }
                     break;
             }
+
+            if (equipItem != null && item != null)
+                equipItem.spriteName = item.icon;
         }
     }
 

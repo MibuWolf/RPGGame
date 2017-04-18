@@ -35,5 +35,10 @@ public class FunctionUI : MonoBehaviour {
         {
             Bag.instance.addItem(Random.Range(10001, 10005));
         }
+
+        if (Input.GetKeyDown(KeyCode.Z))
+        {
+            Equip.instance.setEquip(Random.Range(10005, 10010));
+        }
     }
 }
